@@ -21,15 +21,6 @@ const bookControllers = {
     getBooks: (req, res) => {
         res.status(200).json(books);
     },
-    createBook: (req, res) => {
-        const { title } = req.body;
-        const newBook = {
-            id: String(books.length + 1),
-            title: title
-        };
-        books.push(newBook);
-        res.status(201).json(newBook);
-    },
     getBook: (req, res) => {
         const { id } = req.params;
         const book = findBook(books, id);
@@ -38,6 +29,15 @@ const bookControllers = {
         } else {
             res.status(200).json(book);
         }
+    },
+    createBook: (req, res) => {
+        const { title } = req.body;
+        const newBook = {
+            id: String(books.length + 1),
+            title: title
+        };
+        books.push(newBook);
+        res.status(201).json(newBook);
     },
     updateBook: (req, res) => {
         const { id } = req.params;
